@@ -13,7 +13,7 @@ jobs:
       # Checkout do codigo: está no repo e baixar na máquina do github
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       # Build e push da imagem para o Dockerhub
       - name: Build and push imagem to Dockerhub
         uses: docker/build-push-action@v1.1.0
@@ -22,3 +22,27 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/gitops-fc-node
           tags: ${{ github.sha }}, latest
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with: 
+          kustomize-version: "3.6.1"
+
+      - name: Update Kubernetes resources
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          cd k8s
+          kustomize edit set image goserver=$DOCKER_USERNAME/gitops-fc-node:$GITHUB_SHA
+      
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Bump docker version"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: DiogoPavan/gitops-fc-node
