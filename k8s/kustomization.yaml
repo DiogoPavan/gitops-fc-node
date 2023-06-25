@@ -8,4 +8,4 @@ resources:
 images:
 - name: node-server
   newName: diogopavan1997/gitops-fc-node
-  newTag: newTag
+  newTag: 023bc6a8f774cbe5cde467c9f8a3343d90ddcb30
