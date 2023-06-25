@@ -2,10 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
-  - service.yaml
+- deployment.yaml
+- service.yaml
 
 images:
-  - name: node-server
-    newName: diogopavan1997/gitops-fc-node
-    newTag: newTag
+- name: goserver
+  newName: diogopavan1997/gitops-fc-node
+  newTag: fb477fa530e26ab7583b951aefee2fb473fa92a7
+- name: node-server
+  newName: diogopavan1997/gitops-fc-node
+  newTag: newTag
