@@ -13,7 +13,6 @@ spec:
     spec:
       containers:
       - name: node-server
-        # to
         image: node-server
         ports:
         - containerPort: 3000

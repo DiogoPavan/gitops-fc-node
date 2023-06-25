@@ -33,7 +33,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
           cd k8s
-          kustomize edit set image goserver=$DOCKER_USERNAME/gitops-fc-node:$GITHUB_SHA
+          kustomize edit set image node-server=$DOCKER_USERNAME/gitops-fc-node:$GITHUB_SHA
       
       - name: Commit
         run: |
