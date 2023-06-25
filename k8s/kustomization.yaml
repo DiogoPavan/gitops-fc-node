@@ -6,9 +6,6 @@ resources:
 - service.yaml
 
 images:
-- name: goserver
-  newName: diogopavan1997/gitops-fc-node
-  newTag: fb477fa530e26ab7583b951aefee2fb473fa92a7
 - name: node-server
   newName: diogopavan1997/gitops-fc-node
   newTag: newTag
